@@ -17,6 +17,7 @@ interface MyCryptoService {
     fun getCrypto(
         @Query("ids") ids: String,
         @Query("vs_currencies") vs_currencies: String
+        //@Query("precision") precision: String
 
     ): Call<HashMap<String, ICrypto>>
 }

@@ -6,54 +6,6 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/BtnCurrencyPage"
-        android:layout_width="159dp"
-        android:layout_height="74dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Převodník měn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/BtnCryptoList"
-        android:layout_width="159dp"
-        android:layout_height="74dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="10dp"
-        android:text="Seznam  dostupných cryptoměn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/BtnCurrencyPage"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextCrypto"
-        android:layout_width="127dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginBottom="50dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="bitcoin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextCur"
-        android:layout_width="127dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="492dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="CZK"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/btnCryptoTransfer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,28 +19,79 @@
 
     <EditText
         android:id="@+id/editNumCrypto"
-        android:layout_width="127dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
+        android:layout_width="150dp"
+        android:layout_height="59dp"
         android:layout_marginTop="84dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="10dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="number|numberDecimal"
         android:text="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textVRes"
-        android:layout_width="127dp"
-        android:layout_height="47dp"
-        android:layout_marginEnd="36dp"
+        android:layout_width="150dp"
+        android:layout_height="59dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="492dp"
+        android:background="#A81E1E"
+        android:lineSpacingExtra="8sp"
         android:text="1"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextCur"
         app:layout_constraintTop_toBottomOf="@+id/editNumCrypto" />
+
+    <Spinner
+        android:id="@+id/spinCrypto"
+        android:layout_width="150dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.128"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.125" />
+
+    <CheckBox
+        android:id="@+id/CurrencyToCrypto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Převést měnu na cryptoměnu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.217"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.385" />
+
+    <Spinner
+        android:id="@+id/spinCurrs"
+        android:layout_width="150dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="10dp"
+        android:minWidth="50dp"
+        android:popupElevation="50dp"
+        android:scrollbarSize="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.238" />
+
+    <Spinner
+        android:id="@+id/spinCurName"
+        android:layout_width="374dp"
+        android:layout_height="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.977" />
 </androidx.constraintlayout.widget.ConstraintLayout>

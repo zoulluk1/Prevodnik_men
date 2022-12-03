@@ -1,4 +1,4 @@
 package zoulluk1.fbmi.prevodnikmen.retrofit.model
 
-class ICrypto (var czk: Int){
+class ICrypto (var czk: Double){
 }

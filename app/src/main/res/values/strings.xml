@@ -13,4 +13,27 @@
         <item>BTC</item>
 
     </string-array>
+
+    <string-array name="cryptoCoins">
+        <item>bitcoin</item>
+        <item>litecoin</item>
+        <item>ethereum</item>
+        <item>dogecoin</item>
+
+    </string-array>
+
+    <string-array name="cryptoCurrency">
+        <item>czk</item>
+        <item>eur</item>
+        <item>usd</item>
+
+    </string-array>
+
+    <string-array name="CurrName">
+        <item>Seznam dostupných měn:</item>
+        <item>czk - Česká koruna</item>
+        <item>usd - Americký dollar</item>
+        <item>eur - Euro</item>
+
+    </string-array>
 </resources>
