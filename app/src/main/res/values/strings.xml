@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Prevodnik men</string>
+    <string name="selected_item">Selected item:</string>
+    <string-array name="currency">
+        <item>ARS</item>
+        <item>CNY</item>
+        <item>CUP</item>
+        <item>ARS</item>
+        <item>CZK</item>
+        <item>EUR</item>
+        <item>HKD</item>
+        <item>USD</item>
+        <item>BTC</item>
+
+    </string-array>
 </resources>

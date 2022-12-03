@@ -8,6 +8,8 @@ class App : Application() {
 
     companion object CatGetter {
         lateinit var service: MyService
+        lateinit var cryptoService: MyCryptoService
+
     }
 
     override fun onCreate() {
@@ -18,5 +20,12 @@ class App : Application() {
             .build()
 
         service = retrofit.create(MyService::class.java)
+
+        val retrofit2 = Retrofit.Builder()
+            .baseUrl("https://coingecko.p.rapidapi.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        cryptoService = retrofit2.create(MyCryptoService::class.java)
     }
 }

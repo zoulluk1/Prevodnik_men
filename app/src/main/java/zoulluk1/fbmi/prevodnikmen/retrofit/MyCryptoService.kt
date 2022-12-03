@@ -1,0 +1,22 @@
+package zoulluk1.fbmi.prevodnikmen.retrofit
+
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Headers
+import retrofit2.http.Query
+import zoulluk1.fbmi.prevodnikmen.retrofit.model.ConverCrypto
+import zoulluk1.fbmi.prevodnikmen.retrofit.model.ConvertCurency
+import zoulluk1.fbmi.prevodnikmen.retrofit.model.ICrypto
+
+interface MyCryptoService {
+    @Headers(
+        "X-RapidAPI-Key: 00ba8e0973mshf38ef47c69f7f44p1ca08djsnfd5644985b79",
+        "X-RapidAPI-Host: coingecko.p.rapidapi.com"
+    )
+    @GET("/simple/price")
+    fun getCrypto(
+        @Query("ids") ids: String,
+        @Query("vs_currencies") vs_currencies: String
+
+    ): Call<HashMap<String, ICrypto>>
+}

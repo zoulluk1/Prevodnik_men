@@ -77,4 +77,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextInCur" />
 
+    <Spinner
+        android:id="@+id/spinFromCur"
+        android:layout_width="139dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="228dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+
+        android:id="@+id/spinToCur"
+        android:layout_width="139dp"
+        android:layout_height="59dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="228dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnCryptoPage"
+        android:layout_width="159dp"
+        android:layout_height="74dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Převodník cryptoměn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/BtnCurrencyList"
+        android:layout_width="159dp"
+        android:layout_height="74dp"
+        android:text="Seznam  dostupných měn"
+        app:layout_constraintEnd_toStartOf="@+id/btnCryptoPage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="10dp"
+        tools:layout_editor_absoluteY="644dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
