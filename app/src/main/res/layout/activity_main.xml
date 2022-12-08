@@ -4,118 +4,166 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4F626C"
     android:outlineAmbientShadowColor="@color/cardview_dark_background"
     tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/editNumInAmount"
-        android:layout_width="127dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginBottom="50dp"
+        android:layout_width="150dp"
+        android:layout_height="59dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="9dp"
+        android:background="#4F626C"
+        android:backgroundTint="#ADB0B1"
         android:ems="10"
-        android:inputType="number"
+        android:textAlignment="center"
+        android:inputType="number|numberDecimal"
         android:text="1"
-        app:layout_constraintBottom_toTopOf="@+id/NumViewOutAmount"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextInCur"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.223" />
 
     <TextView
         android:id="@+id/NumViewOutAmount"
-        android:layout_width="127dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="492dp"
-        android:text="Klikněte na převést"
+        android:layout_width="150dp"
+        android:layout_height="59dp"
+        android:layout_marginEnd="10dp"
+        android:background="#ADB0B1"
+        android:text=""
+
+        android:textSize="19dp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toEndOf="@+id/editTextOutCur"
-        app:layout_constraintTop_toBottomOf="@+id/editNumInAmount"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.964"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.415" />
 
     <Button
         android:id="@+id/BtnPrevod"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_width="116dp"
+        android:layout_height="64dp"
+        android:textColor="#AF3232"
+        app:iconTint="#4E1A1A"
         android:text="Převést"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextOutCur"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/editTextInCur"
-        android:layout_width="127dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginBottom="50dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="EUR"
-        app:layout_constraintBottom_toTopOf="@+id/editTextOutCur"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextOutCur"
-        android:layout_width="127dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="492dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="CZK"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextInCur" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.56" />
 
     <Spinner
         android:id="@+id/spinFromCur"
-        android:layout_width="139dp"
+        android:layout_width="150dp"
         android:layout_height="59dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="228dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="84dp"
+        android:background="#90AFAA"
+        android:textAlignment="center"
+        android:backgroundTint="#ADB0B1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.113" />
 
     <Spinner
 
         android:id="@+id/spinToCur"
-        android:layout_width="139dp"
+        android:layout_width="150dp"
         android:layout_height="59dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="228dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="87dp"
+        android:background="#ADB0B1"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.316" />
 
     <Button
         android:id="@+id/btnCryptoPage"
-        android:layout_width="159dp"
-        android:layout_height="74dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="379dp"
+        android:layout_height="60dp"
         android:text="Převodník cryptoměn"
+
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+    <Spinner
+        android:id="@+id/spinNames"
+        android:layout_width="388dp"
+        android:layout_height="66dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="#90AFAA"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.263"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.842" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="192dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
+
+        android:text="Aktuální měna:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/spinFromCur"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="191dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="10dp"
+        android:text="Požadovaná měna:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/spinToCur"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="165dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="4dp"
+        android:text="Výsledná částka:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/NumViewOutAmount"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/BtnCurrencyList"
-        android:layout_width="159dp"
-        android:layout_height="74dp"
-        android:text="Seznam  dostupných měn"
-        app:layout_constraintEnd_toStartOf="@+id/btnCryptoPage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="10dp"
-        tools:layout_editor_absoluteY="644dp" />
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="125dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="4dp"
+        android:text="Částka:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editNumInAmount"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

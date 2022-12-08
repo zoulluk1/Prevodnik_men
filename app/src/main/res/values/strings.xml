@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Prevodnik men</string>
+    <string name="app_name">Převodník měn</string>
     <string name="selected_item">Selected item:</string>
     <string-array name="currency">
         <item>ARS</item>
@@ -34,6 +34,19 @@
         <item>czk - Česká koruna</item>
         <item>usd - Americký dollar</item>
         <item>eur - Euro</item>
+
+    </string-array>
+
+    <string-array name="CurrNames">
+        <item>Seznam dostupných měn:</item>
+        <item>CZK - Česká koruna</item>
+        <item>USD - Americký dollar</item>
+        <item>EUR - Euro</item>
+        <item>ARS - Argentinské peso</item>
+        <item>CNY - Čínský juan</item>
+        <item>CUP - Kubánské peso</item>
+        <item>HKD - Hongkondský dolar</item>
+        <item>BTC - Bitcoin</item>
 
     </string-array>
 </resources>

@@ -2,13 +2,13 @@ package zoulluk1.fbmi.prevodnikmen
 
 
 import android.content.Intent
-import android.icu.number.Precision.currency
+import android.icu.util.Currency
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
-import androidx.core.view.get
+//import androidx.core.view.get
 //import android.widget.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,38 +27,35 @@ class MainActivity : AppCompatActivity() {
     lateinit var spinFromCur: Spinner
     lateinit var spinToCur: Spinner
     lateinit var BtnCryptoPage: Button
-
+    lateinit var spinNames:Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        fromCurrency = findViewById(R.id.editTextInCur)
-        toCurrency = findViewById(R.id.editTextOutCur)
+        //fromCurrency = findViewById(R.id.editTextInCur)
+        //toCurrency = findViewById(R.id.editTextOutCur)
         amount = findViewById(R.id.editNumInAmount)
         btnTransfer = findViewById(R.id.BtnPrevod)
         transferResult = findViewById(R.id.NumViewOutAmount)
         spinFromCur = findViewById(R.id.spinFromCur)
         spinToCur = findViewById(R.id.spinToCur)
         BtnCryptoPage= findViewById(R.id.btnCryptoPage)
+        spinNames=findViewById(R.id.spinNames)
 
-
-        /*val spinner = findViewById(R.id.spinFromCur)
-        val adapter = ArrayAdapter.createFromResource(this,R.array.currency,android.R.layout.simple_spinner_item)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter;
-        spinner.onItemSelectedListener = this
-        resultView = findViewById(R.id.)
-*/
-        /*val adapter = ArrayAdapter.createFromResource(this,R.array.currency,android.R.layout.simple_spinner_item)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)*/
         val currency = resources.getStringArray(R.array.currency)
+        val currNames= resources.getStringArray(R.array.CurrNames)
+        var fromCurrencyV= currency[4]
+        var toCurrencyV= currency[3]
+
 
         val adapter = ArrayAdapter(this,
-            android.R.layout.simple_spinner_item, currency)
+            android.R.layout.simple_spinner_dropdown_item, currency)
+        val CurrAdapter = ArrayAdapter(this,
+            android.R.layout.simple_spinner_dropdown_item, currNames)
 
         spinFromCur.adapter= adapter;
         spinToCur.adapter= adapter;
-
+        spinNames.adapter=CurrAdapter;
 
         spinFromCur.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
@@ -74,8 +71,9 @@ class MainActivity : AppCompatActivity() {
                     getString(R.string.selected_item) + " " + "" + currency[position],
                     Toast.LENGTH_SHORT
                 ).show()
-                fromCurrency.text.clear()
-                fromCurrency.text.append(currency[position].toString())
+                //fromCurrency.text.clear()
+                //fromCurrency.text.append(currency[position].toString())
+                fromCurrencyV=currency[position]
 
             }
 
@@ -84,15 +82,51 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-       // fromCurrency.text=spinFromCur
+        spinToCur.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
 
-        //spinToCur.getItemAtPosition(adapter.getPosition(currency)).toString()
+                Toast.makeText(
+                    this@MainActivity,
+                    getString(R.string.selected_item) + " " + "" + currency[position],
+                    Toast.LENGTH_SHORT
+                ).show()
+                //fromCurrency.text.clear()
+                //fromCurrency.text.append(currency[position].toString())
+                toCurrencyV = currency[position]
+            }
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // write code to perform some action
+
+            }
+        }
+            spinNames.onItemSelectedListener = object :
+                AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
+
+
+                }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // write code to perform some action
+            }
+        }
 
 
 
         btnTransfer.setOnClickListener{
 
-            val convertCurency: Call<ConvertCurency> = App.service.getConvertCurency(fromCurrency.text.toString(),toCurrency.text.toString(),amount.text.toString().toDouble())
+            val convertCurency: Call<ConvertCurency> = App.service.getConvertCurency(fromCurrencyV.toString(),toCurrencyV.toString(),amount.text.toString().toDouble())
 
             convertCurency.enqueue(object : Callback<ConvertCurency> {
                 override fun onResponse(call: Call<ConvertCurency>, response: Response<ConvertCurency>) {

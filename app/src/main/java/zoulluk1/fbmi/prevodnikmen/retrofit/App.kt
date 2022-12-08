@@ -9,7 +9,8 @@ class App : Application() {
     companion object CatGetter {
         lateinit var service: MyService
         lateinit var cryptoService: MyCryptoService
-
+        lateinit var cryptoServiceEUR: EURCryptoService
+        lateinit var cryptoServiceUSD: USDCryptoService
     }
 
     override fun onCreate() {
@@ -27,5 +28,7 @@ class App : Application() {
             .build()
 
         cryptoService = retrofit2.create(MyCryptoService::class.java)
+        cryptoServiceEUR = retrofit2.create(EURCryptoService::class.java)
+        cryptoServiceUSD = retrofit2.create(USDCryptoService::class.java)
     }
 }
