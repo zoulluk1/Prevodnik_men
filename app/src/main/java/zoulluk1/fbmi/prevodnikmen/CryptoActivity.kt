@@ -1,6 +1,7 @@
 package zoulluk1.fbmi.prevodnikmen
 
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -48,6 +49,13 @@ class CryptoActivity: AppCompatActivity() {
         textView2= findViewById(R.id.textView2)
 
         //editTextCurr=findViewById(R.id.editTextCur)
+        val sharedPrefC = getSharedPreferences("cryptoResult", Context.MODE_PRIVATE)
+        val editC = sharedPrefC.edit()
+        val resultC = sharedPrefC.getString("resultC","default value")
+        val CrVal = sharedPrefC.getInt("CrVal",0)
+        val CuVal = sharedPrefC.getInt("CuVal",0)
+        val check = sharedPrefC.getBoolean("check",false)
+        val amountC= sharedPrefC.getString("amountC","0")
 
         val cryptoCoins = resources.getStringArray(R.array.cryptoCoins)
         val cryptoCurrs = resources.getStringArray(R.array.cryptoCurrency)
@@ -68,14 +76,25 @@ class CryptoActivity: AppCompatActivity() {
         spinCrypto.adapter= adapterCoins;
         spinCurrs.adapter=adapterCurrs;
         spinCurrName.adapter= adapterCurrName;
+        CurencyToCrypto.isChecked=check
+
+        textVResponse.text.append(resultC)
+        editNumCrypto.text.clear()
+        editNumCrypto.text.append(amountC)
+
+
         CurencyToCrypto.setOnClickListener {
 
         if(CurencyToCrypto.isChecked){
                 textView.text="Měna:"
                 textView2.text="Cryptoměna";
-            spinCrypto.adapter= adapterCurrs;
-            //spinCurrs.adapter=adapterCoins;
 
+            spinCrypto.adapter= adapterCurrs;
+            //spinCrypto.setSelection(CuVal)
+            //spinCurrs.setSelection(CrVal)
+            spinCurrs.adapter=adapterCoins;
+            editC.putBoolean("check",true)
+            editC.commit()
             /*---------Spinner Cryptoměn-------------*/
             spinCrypto.onItemSelectedListener =object :
                 AdapterView.OnItemSelectedListener {
@@ -95,7 +114,8 @@ class CryptoActivity: AppCompatActivity() {
                      */
 
                         cryptoCurr = cryptoCurrs[position]
-
+                       // editC.putInt("CuVal",position)
+                       // editC.commit()
 
                     //editTextCrypto.text.clear()
                     //editTextCrypto.text.append(cryptoCoin.toString())
@@ -124,7 +144,8 @@ class CryptoActivity: AppCompatActivity() {
                      */
 
                         cryptoCoin = cryptoCoins[position]
-
+                      // editC.putInt("CrVal",position)
+                       // editC.commit()
 
                     //editTextCurr.text.clear()
                     //editTextCurr.text.append(cryptoCurr.toString())
@@ -140,6 +161,10 @@ class CryptoActivity: AppCompatActivity() {
             textView2.text="Měna:".toString()
             spinCrypto.adapter= adapterCoins;
             spinCurrs.adapter=adapterCurrs;
+            //spinCrypto.setSelection(CrVal)
+            //spinCurrs.setSelection(CuVal)
+            editC.putBoolean("check",false)
+            editC.commit()
 /*---------Spinner Cryptoměn-------------*/
             spinCrypto.onItemSelectedListener =object :
                 AdapterView.OnItemSelectedListener {
@@ -159,7 +184,8 @@ class CryptoActivity: AppCompatActivity() {
                      */
 
                         cryptoCoin = cryptoCoins[position]
-
+                        //editC.putInt("CrVal",position)
+                        //editC.commit()
 
                     //editTextCrypto.text.clear()
                     //editTextCrypto.text.append(cryptoCoin.toString())
@@ -188,7 +214,8 @@ class CryptoActivity: AppCompatActivity() {
                      */
 
                         cryptoCurr = cryptoCurrs[position]
-
+                        //editC.putInt("CuVal",position)
+                        //editC.commit()
 
                     //editTextCurr.text.clear()
                     //editTextCurr.text.append(cryptoCurr.toString())
@@ -232,11 +259,15 @@ class CryptoActivity: AppCompatActivity() {
                         if(body !== null){
                             CryptoResponse=body.get(cryptoCoin.toString())!!.eur.toDouble()
                             CryptoAmount=editNumCrypto.text.toString().toDouble()
+                            editC.putString ("amountC",CryptoAmount.toString())
+                            editC.commit()
                             if(CurencyToCrypto.isChecked){
                                 var result= CryptoAmount/CryptoResponse
                                 result = BigDecimal(result).setScale(6,RoundingMode.HALF_UP).toDouble();
                                 textVResponse.text.clear()
                                 textVResponse.text.append(result.toString())
+                                editC.putString("resultC",textVResponse.text.toString())
+                                editC.commit()
                             }
                             else {
 
@@ -244,6 +275,8 @@ class CryptoActivity: AppCompatActivity() {
 
                                 textVResponse.text.clear()
                                 textVResponse.text.append((CryptoResponse*CryptoAmount).toString())
+                                editC.putString("resultC",textVResponse.text.toString())
+                                editC.commit()
                                 //textVResponse.text=(CryptoResponse*CryptoAmount).toString()
                             }
                         }
@@ -264,12 +297,16 @@ class CryptoActivity: AppCompatActivity() {
                         if(body !== null){
                             CryptoResponse=body.get(cryptoCoin.toString())!!.usd.toDouble()
                             CryptoAmount=editNumCrypto.text.toString().toDouble()
+                            editC.putString ("amountC",CryptoAmount.toString())
+                            editC.commit()
                             if(CurencyToCrypto.isChecked){
                                 var result= CryptoAmount/CryptoResponse
                                 result = BigDecimal(result).setScale(6,RoundingMode.HALF_UP).toDouble();
                                 //textVResponse.text=(result).toString()
                                 textVResponse.text.clear()
                                 textVResponse.text.append(result.toString())
+                                editC.putString("resultC",textVResponse.text.toString())
+                                editC.commit()
                             }
                             else {
 
@@ -278,6 +315,8 @@ class CryptoActivity: AppCompatActivity() {
 
                                 textVResponse.text.clear()
                                 textVResponse.text.append((CryptoResponse*CryptoAmount).toString())
+                                editC.putString("resultC",textVResponse.text.toString())
+                                editC.commit()
                             }
                         }
                     }
@@ -297,11 +336,15 @@ class CryptoActivity: AppCompatActivity() {
                         if(body !== null){
                             CryptoResponse=body.get(cryptoCoin.toString())!!.czk.toDouble()
                             CryptoAmount=editNumCrypto.text.toString().toDouble()
+                            editC.putString ("amountC",CryptoAmount.toString())
+                            editC.commit()
                             if(CurencyToCrypto.isChecked){
                                 var result= CryptoAmount/CryptoResponse
                                 result = BigDecimal(result).setScale(6,RoundingMode.HALF_UP).toDouble();
                                 textVResponse.text.clear()
                                 textVResponse.text.append(result.toString())
+                                editC.putString("resultC",textVResponse.text.toString())
+                                editC.commit()
                             }
                             else {
 
@@ -310,6 +353,8 @@ class CryptoActivity: AppCompatActivity() {
 
                                 textVResponse.text.clear()
                                 textVResponse.text.append((CryptoResponse*CryptoAmount).toString())
+                                editC.putString("resultC",textVResponse.text.toString())
+                                editC.commit()
                             }
                         }
                     }

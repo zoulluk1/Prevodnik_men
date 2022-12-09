@@ -1,6 +1,7 @@
 package zoulluk1.fbmi.prevodnikmen
 
 
+import android.content.Context
 import android.content.Intent
 import android.icu.util.Currency
 import androidx.appcompat.app.AppCompatActivity
@@ -42,6 +43,16 @@ class MainActivity : AppCompatActivity() {
         BtnCryptoPage= findViewById(R.id.btnCryptoPage)
         spinNames=findViewById(R.id.spinNames)
 
+        val sharedPref = getSharedPreferences("result", Context.MODE_PRIVATE)
+        val edit = sharedPref.edit()
+        val result = sharedPref.getString("result","1")
+        val inCur = sharedPref.getInt("inCur",0)
+        val toCur = sharedPref.getInt("toCur",0)
+        val amountM = sharedPref.getString("amount","1")
+        transferResult.text=result;
+        amount.text.clear();
+        amount.text.append(amountM);
+
         val currency = resources.getStringArray(R.array.currency)
         val currNames= resources.getStringArray(R.array.CurrNames)
         var fromCurrencyV= currency[4]
@@ -57,6 +68,8 @@ class MainActivity : AppCompatActivity() {
         spinToCur.adapter= adapter;
         spinNames.adapter=CurrAdapter;
 
+        spinFromCur.setSelection(inCur);
+        spinToCur.setSelection(toCur);
         spinFromCur.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -74,6 +87,8 @@ class MainActivity : AppCompatActivity() {
                 //fromCurrency.text.clear()
                 //fromCurrency.text.append(currency[position].toString())
                 fromCurrencyV=currency[position]
+                edit.putInt("inCur",position)
+                edit.commit()
 
             }
 
@@ -99,6 +114,8 @@ class MainActivity : AppCompatActivity() {
                 //fromCurrency.text.clear()
                 //fromCurrency.text.append(currency[position].toString())
                 toCurrencyV = currency[position]
+                edit.putInt("toCur",position)
+                edit.commit()
             }
                 override fun onNothingSelected(parent: AdapterView<*>) {
                     // write code to perform some action
@@ -133,6 +150,9 @@ class MainActivity : AppCompatActivity() {
                     val body = response.body()
                     if(body !== null){
                         transferResult.text=body.new_amount.toString()
+                        edit.putString("result",transferResult.text.toString())
+                        edit.putString("amount",amount.text.toString())
+                        edit.commit()
                     }
                 }
 
@@ -142,6 +162,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
             })
+
         }
 
         BtnCryptoPage.setOnClickListener {
