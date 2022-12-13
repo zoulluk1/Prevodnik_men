@@ -218,7 +218,7 @@ class CryptoActivity: AppCompatActivity() {
                         if(body !== null){
                             CryptoResponse=body.get(cryptoCoin.toString())!!.eur.toDouble()
                             CryptoAmount=editNumCrypto.text.toString().toDouble()
-                            editC.putString ("amountC",CryptoAmount.toString())
+                            editC.putString ("amountC",editNumCrypto.text.toString())
                             editC.commit()
                             if(CurencyToCrypto.isChecked){
                                 var result= CryptoAmount/CryptoResponse
@@ -252,7 +252,7 @@ class CryptoActivity: AppCompatActivity() {
                         if(body !== null){
                             CryptoResponse=body.get(cryptoCoin.toString())!!.usd.toDouble()
                             CryptoAmount=editNumCrypto.text.toString().toDouble()
-                            editC.putString ("amountC",CryptoAmount.toString())
+                            editC.putString ("amountC",editNumCrypto.text.toString())
                             editC.commit()
                             if(CurencyToCrypto.isChecked){
                                 var result= CryptoAmount/CryptoResponse
@@ -285,7 +285,7 @@ class CryptoActivity: AppCompatActivity() {
                         if(body !== null){
                             CryptoResponse=body.get(cryptoCoin.toString())!!.czk.toDouble()
                             CryptoAmount=editNumCrypto.text.toString().toDouble()
-                            editC.putString ("amountC",CryptoAmount.toString())
+                            editC.putString ("amountC",editNumCrypto.text.toString())
                             editC.commit()
                             if(CurencyToCrypto.isChecked){
                                 var result= CryptoAmount/CryptoResponse
