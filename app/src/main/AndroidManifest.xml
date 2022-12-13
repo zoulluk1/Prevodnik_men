@@ -28,7 +28,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".CryptoActivity"></activity>
+        <activity
+            android:name=".CryptoActivity"
+            android:screenOrientation="portrait"
+            ></activity>
     </application>
 
 </manifest>

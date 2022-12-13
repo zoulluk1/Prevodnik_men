@@ -6,7 +6,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 import zoulluk1.fbmi.prevodnikmen.retrofit.model.CZKICrypto
 
-interface MyCryptoService {
+interface CZKCryptoService {
     @Headers(
         "X-RapidAPI-Key: 00ba8e0973mshf38ef47c69f7f44p1ca08djsnfd5644985b79",
         "X-RapidAPI-Host: coingecko.p.rapidapi.com"

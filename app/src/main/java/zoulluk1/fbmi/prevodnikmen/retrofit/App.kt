@@ -8,7 +8,7 @@ class App : Application() {
 
     companion object CatGetter {
         lateinit var service: MyService
-        lateinit var cryptoService: MyCryptoService
+        lateinit var cryptoService: CZKCryptoService
         lateinit var cryptoServiceEUR: EURCryptoService
         lateinit var cryptoServiceUSD: USDCryptoService
     }
@@ -27,7 +27,7 @@ class App : Application() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        cryptoService = retrofit2.create(MyCryptoService::class.java)
+        cryptoService = retrofit2.create(CZKCryptoService::class.java)
         cryptoServiceEUR = retrofit2.create(EURCryptoService::class.java)
         cryptoServiceUSD = retrofit2.create(USDCryptoService::class.java)
     }

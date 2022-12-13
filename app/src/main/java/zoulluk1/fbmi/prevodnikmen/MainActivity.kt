@@ -3,14 +3,11 @@ package zoulluk1.fbmi.prevodnikmen
 
 import android.content.Context
 import android.content.Intent
-import android.icu.util.Currency
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
-//import androidx.core.view.get
-//import android.widget.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,8 +17,6 @@ import zoulluk1.fbmi.prevodnikmen.retrofit.model.ConvertCurency
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var fromCurrency: EditText
-    lateinit var toCurrency: EditText
     lateinit var amount: EditText
     lateinit var btnTransfer: Button
     lateinit var transferResult: TextView
@@ -33,8 +28,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //fromCurrency = findViewById(R.id.editTextInCur)
-        //toCurrency = findViewById(R.id.editTextOutCur)
         amount = findViewById(R.id.editNumInAmount)
         btnTransfer = findViewById(R.id.BtnPrevod)
         transferResult = findViewById(R.id.NumViewOutAmount)
@@ -78,22 +71,13 @@ class MainActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-
-                Toast.makeText(
-                    this@MainActivity,
-                    getString(R.string.selected_item) + " " + "" + currency[position],
-                    Toast.LENGTH_SHORT
-                ).show()
-                //fromCurrency.text.clear()
-                //fromCurrency.text.append(currency[position].toString())
                 fromCurrencyV=currency[position]
                 edit.putInt("inCur",position)
                 edit.commit()
-
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // write code to perform some action
+                spinFromCur.setSelection(sharedPref.getInt("inCur",0))
             }
         }
 
@@ -105,20 +89,12 @@ class MainActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-
-                Toast.makeText(
-                    this@MainActivity,
-                    getString(R.string.selected_item) + " " + "" + currency[position],
-                    Toast.LENGTH_SHORT
-                ).show()
-                //fromCurrency.text.clear()
-                //fromCurrency.text.append(currency[position].toString())
                 toCurrencyV = currency[position]
                 edit.putInt("toCur",position)
                 edit.commit()
             }
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    // write code to perform some action
+                    spinToCur.setSelection(sharedPref.getInt("toCur",0))
 
             }
         }
@@ -135,7 +111,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // write code to perform some action
+                spinNames.setSelection(0)
             }
         }
 

@@ -1,6 +1,5 @@
 package zoulluk1.fbmi.prevodnikmen
 
-
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -19,10 +18,8 @@ import java.math.RoundingMode
 
 class CryptoActivity: AppCompatActivity() {
 
-    lateinit var BtnCurrencyPage: Button
     lateinit var btnCryptoTransfer: Button
     lateinit var textVResponse: EditText
-   // lateinit var editTextCrypto: EditText
     lateinit var spinCrypto: Spinner
     lateinit var editNumCrypto: EditText
     lateinit var CurencyToCrypto: CheckBox
@@ -31,7 +28,6 @@ class CryptoActivity: AppCompatActivity() {
     lateinit var textView: TextView
     lateinit var textView2: TextView
 
-    //lateinit var editTextCurr: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +35,6 @@ class CryptoActivity: AppCompatActivity() {
 
         btnCryptoTransfer=findViewById(R.id.btnCryptoTransfer)
         textVResponse=findViewById(R.id.textVRes)
-        //editTextCrypto=findViewById(R.id.editTextCrypto)
         spinCrypto=findViewById(R.id.spinCrypto)
         editNumCrypto= findViewById(R.id.editNumCrypto)
         CurencyToCrypto=findViewById(R.id.CurrencyToCrypto)
@@ -48,7 +43,6 @@ class CryptoActivity: AppCompatActivity() {
         textView= findViewById(R.id.textView)
         textView2= findViewById(R.id.textView2)
 
-        //editTextCurr=findViewById(R.id.editTextCur)
         val sharedPrefC = getSharedPreferences("cryptoResult", Context.MODE_PRIVATE)
         val editC = sharedPrefC.edit()
         val resultC = sharedPrefC.getString("resultC","default value")
@@ -72,7 +66,7 @@ class CryptoActivity: AppCompatActivity() {
             android.R.layout.simple_spinner_dropdown_item,cryptoCurrs)
 
         val adapterCurrName=ArrayAdapter(this,
-            android.R.layout.simple_spinner_item,currName)
+            android.R.layout.simple_spinner_dropdown_item,currName)
         spinCrypto.adapter= adapterCoins;
         spinCurrs.adapter=adapterCurrs;
         spinCurrName.adapter= adapterCurrName;
@@ -82,6 +76,22 @@ class CryptoActivity: AppCompatActivity() {
         editNumCrypto.text.clear()
         editNumCrypto.text.append(amountC)
 
+        if(check){
+            spinCrypto.adapter= adapterCurrs;
+            spinCurrs.adapter=adapterCoins;
+            textView.text="Měna:"
+            textView2.text="Cryptoměna:"
+            spinCrypto.setSelection(CuVal)
+            spinCurrs.setSelection(CrVal)
+        }
+        else{
+            spinCrypto.adapter= adapterCoins;
+            spinCurrs.adapter=adapterCurrs;
+            textView.text="Cryptoměna:"
+            textView2.text="Měna:"
+            spinCrypto.setSelection(CrVal)
+            spinCurrs.setSelection(CuVal)
+        }
 
         CurencyToCrypto.setOnClickListener {
 
@@ -90,8 +100,8 @@ class CryptoActivity: AppCompatActivity() {
                 textView2.text="Cryptoměna";
 
             spinCrypto.adapter= adapterCurrs;
-            //spinCrypto.setSelection(CuVal)
-            //spinCurrs.setSelection(CrVal)
+            spinCrypto.setSelection(sharedPrefC.getInt("CuVal",0))
+            spinCurrs.setSelection(sharedPrefC.getInt("CrVal",0))
             spinCurrs.adapter=adapterCoins;
             editC.putBoolean("check",true)
             editC.commit()
@@ -104,28 +114,16 @@ class CryptoActivity: AppCompatActivity() {
                     position: Int,
                     id: Long
                 ) {
-
-                    /*Toast.makeText(
-                        this@CryptoActivity,
-                        getString(R.string.selected_item) + " " + "" + cryptoCoins[position],
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                     */
-
                         cryptoCurr = cryptoCurrs[position]
-                       // editC.putInt("CuVal",position)
-                       // editC.commit()
-
-                    //editTextCrypto.text.clear()
-                    //editTextCrypto.text.append(cryptoCoin.toString())
-
+                       editC.putInt("CuVal",position)
+                       editC.commit()
                 }
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    // write code to perform some action
+                    spinCrypto.setSelection(sharedPrefC.getInt("CuVal",0))
+
                 }
             }
-/*---------Spinner měn-------------*/
+            /*---------Spinner měn-------------*/
             spinCurrs.onItemSelectedListener =object :
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -134,25 +132,12 @@ class CryptoActivity: AppCompatActivity() {
                     position: Int,
                     id: Long
                 ) {
-
-                    /* Toast.makeText(
-                         this@CryptoActivity,
-                         getString(R.string.selected_item) + " " + "" + cryptoCurrs[position],
-                         Toast.LENGTH_SHORT
-                     ).show()
-
-                     */
-
                         cryptoCoin = cryptoCoins[position]
-                      // editC.putInt("CrVal",position)
-                       // editC.commit()
-
-                    //editTextCurr.text.clear()
-                    //editTextCurr.text.append(cryptoCurr.toString())
-
+                        editC.putInt("CrVal",position)
+                        editC.commit()
                 }
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    // write code to perform some action
+                    spinCurrs.setSelection(sharedPrefC.getInt("CrVal",0))
                 }
             }
         }
@@ -161,11 +146,11 @@ class CryptoActivity: AppCompatActivity() {
             textView2.text="Měna:".toString()
             spinCrypto.adapter= adapterCoins;
             spinCurrs.adapter=adapterCurrs;
-            //spinCrypto.setSelection(CrVal)
-            //spinCurrs.setSelection(CuVal)
+            spinCrypto.setSelection(sharedPrefC.getInt("CrVal",0)) //
+            spinCurrs.setSelection(sharedPrefC.getInt("CuVal",0)) //
             editC.putBoolean("check",false)
             editC.commit()
-/*---------Spinner Cryptoměn-------------*/
+            /*---------Spinner Cryptoměn-------------*/
             spinCrypto.onItemSelectedListener =object :
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -174,28 +159,15 @@ class CryptoActivity: AppCompatActivity() {
                     position: Int,
                     id: Long
                 ) {
-
-                    /*Toast.makeText(
-                        this@CryptoActivity,
-                        getString(R.string.selected_item) + " " + "" + cryptoCoins[position],
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                     */
-
                         cryptoCoin = cryptoCoins[position]
-                        //editC.putInt("CrVal",position)
-                        //editC.commit()
-
-                    //editTextCrypto.text.clear()
-                    //editTextCrypto.text.append(cryptoCoin.toString())
-
+                        editC.putInt("CrVal",position)
+                        editC.commit()
                 }
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    // write code to perform some action
+                    spinCrypto.setSelection(sharedPrefC.getInt("CrVal",0))
                 }
             }
-/*---------Spinner měn-------------*/
+            /*---------Spinner měn-------------*/
             spinCurrs.onItemSelectedListener =object :
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -205,29 +177,16 @@ class CryptoActivity: AppCompatActivity() {
                     id: Long
                 ) {
 
-                    /* Toast.makeText(
-                         this@CryptoActivity,
-                         getString(R.string.selected_item) + " " + "" + cryptoCurrs[position],
-                         Toast.LENGTH_SHORT
-                     ).show()
-
-                     */
-
                         cryptoCurr = cryptoCurrs[position]
-                        //editC.putInt("CuVal",position)
-                        //editC.commit()
-
-                    //editTextCurr.text.clear()
-                    //editTextCurr.text.append(cryptoCurr.toString())
-
+                        editC.putInt("CuVal",position)
+                        editC.commit()
                 }
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    // write code to perform some action
+                    spinCurrs.setSelection(sharedPrefC.getInt("CuVal",0))
                 }
             }
         }
 
-        //spinCurrName.adapter= adapterCurrName
         }
 
         /*---------Spinner seznam měn-------------*/
@@ -242,7 +201,7 @@ class CryptoActivity: AppCompatActivity() {
                 //
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // write code to perform some action
+                spinCurrName.setSelection(0)
             }
         }
 /*------BTN----------------------*/
@@ -251,7 +210,7 @@ class CryptoActivity: AppCompatActivity() {
             val convertCrypto: Call<HashMap<String, CZKICrypto>> = App.cryptoService.getCrypto(cryptoCoin.toString(),"czk")
             val convertCryptoUSD:Call<HashMap<String, USDICrypto>> = App.cryptoServiceUSD .getCrypto(cryptoCoin.toString(),"usd")
             val convertCryptoEUR:Call<HashMap<String, EURICrypto>> = App.cryptoServiceEUR .getCrypto(cryptoCoin.toString(),"eur")
-/******___EUR___***********************************************************************************************************************************************/
+            /******___EUR___***********************************************************************************************************************************************/
             if (cryptoCurr=="eur"){
                 convertCryptoEUR.enqueue(object : Callback<HashMap<String, EURICrypto>> {
                     override fun onResponse(call: Call<HashMap<String, EURICrypto>>, response: Response<HashMap<String, EURICrypto>>) {
@@ -270,14 +229,10 @@ class CryptoActivity: AppCompatActivity() {
                                 editC.commit()
                             }
                             else {
-
-                                //textVResponse.text=body.get(cryptoCoin.toString())!!.czk.toDouble().toString()
-
                                 textVResponse.text.clear()
                                 textVResponse.text.append((CryptoResponse*CryptoAmount).toString())
                                 editC.putString("resultC",textVResponse.text.toString())
                                 editC.commit()
-                                //textVResponse.text=(CryptoResponse*CryptoAmount).toString()
                             }
                         }
                     }
@@ -302,17 +257,12 @@ class CryptoActivity: AppCompatActivity() {
                             if(CurencyToCrypto.isChecked){
                                 var result= CryptoAmount/CryptoResponse
                                 result = BigDecimal(result).setScale(6,RoundingMode.HALF_UP).toDouble();
-                                //textVResponse.text=(result).toString()
                                 textVResponse.text.clear()
                                 textVResponse.text.append(result.toString())
                                 editC.putString("resultC",textVResponse.text.toString())
                                 editC.commit()
                             }
                             else {
-
-                                //textVResponse.text=body.get(cryptoCoin.toString())!!.czk.toDouble().toString()
-
-
                                 textVResponse.text.clear()
                                 textVResponse.text.append((CryptoResponse*CryptoAmount).toString())
                                 editC.putString("resultC",textVResponse.text.toString())
@@ -325,7 +275,6 @@ class CryptoActivity: AppCompatActivity() {
                         Log.i("ASSAAS", t.message.toString())
                         Toast.makeText(this@CryptoActivity, "Something wrong", Toast.LENGTH_SHORT).show()
                     }
-
                 })
             }
             /***___CZK___**************************************************************************************************/
@@ -347,10 +296,6 @@ class CryptoActivity: AppCompatActivity() {
                                 editC.commit()
                             }
                             else {
-
-                                //textVResponse.text=body.get(cryptoCoin.toString())!!.czk.toDouble().toString()
-
-
                                 textVResponse.text.clear()
                                 textVResponse.text.append((CryptoResponse*CryptoAmount).toString())
                                 editC.putString("resultC",textVResponse.text.toString())
@@ -366,10 +311,6 @@ class CryptoActivity: AppCompatActivity() {
 
                 })
             }
-
-
-
-
 
         }
     }
